@@ -11,6 +11,7 @@ import Notifications from "../notifications";
 import Messages from "../messages";
 import Lists from "../lists";
 import More from "../more";
+import Songs from "../songs";
 
 function Tuiter () {
   return(
@@ -31,6 +32,7 @@ function Tuiter () {
               <Route path="/bookmarks" element={<Bookmarks/>}/>
               <Route path="/lists" element={<Lists/>}/>
               <Route path="/profile" element={<Profile/>}/>
+              <Route path="/songs" element={<Songs/>}/>
               <Route path="/more" element={<More/>}/>
             </Routes>
           </div>

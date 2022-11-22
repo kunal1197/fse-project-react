@@ -44,3 +44,8 @@ body {
 .ttr-z-index-1 {
     z-index: 1;
 }
+
+/*Song search page*/
+.poster-spacing {
+    padding-right: 15px;
+}
