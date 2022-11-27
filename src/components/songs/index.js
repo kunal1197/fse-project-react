@@ -38,6 +38,10 @@ const Songs = () => {
                                 </li>
                             )
                         }
+                        {
+                            songs.length === 0 &&
+                            <h4> No Results. </h4>
+                        }
                     </ul>
                 </div>
 
