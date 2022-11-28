@@ -1,7 +1,7 @@
 import React from "react";
 import CreatableSelect from "react-select/creatable";
 
-const LikesSideBar = () => {
+const PlaylistsSideBar = () => {
     const options = [
         { value: "jack", label: "Jack", color: "#FF8B00" },
         { value: "john", label: "John", color: "#36B37E" },
@@ -49,8 +49,9 @@ const LikesSideBar = () => {
             onInputChange={handleInputChange}
             isMulti
             styles={colorStyles}
+            defaultValue="Playlisted Songs"
         />
     );
 };
 
-export default LikesSideBar;
+export default PlaylistsSideBar;
