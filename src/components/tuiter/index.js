@@ -16,6 +16,7 @@ import {configureStore} from "@reduxjs/toolkit";
 import {Provider} from "react-redux";
 import songReducer from "../songs/songReducer";
 import LikesSideBar from "../likessidebar";
+import Sidebar from "../sidebar";
 
 const store = configureStore({
   reducer: {
@@ -48,7 +49,7 @@ const Tuiter = () => {
                 </Routes>
               </div>
               <div className="ttr-right-column">
-                <LikesSideBar/>
+                <Sidebar/>
               </div>
             </div>
           </div>

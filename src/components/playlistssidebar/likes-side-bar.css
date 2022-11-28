@@ -1,0 +1,11 @@
+
+.ttr-side-bar
+.ttr-side-bar-song
+.ttr-user-logo {
+    width: 68px;
+}
+
+.ttr-side-bar .ttr-search .fas.fa-search {
+    top: 17px;
+    left: 17px;
+}
