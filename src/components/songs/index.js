@@ -2,6 +2,7 @@ import {useState} from "react";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {searchForSongsThunk} from "../../services/songThunks";
+import SongStats from "./songStats";
 
 const Songs = () => {
     const [title, setTitle] = useState('');
@@ -30,11 +31,20 @@ const Songs = () => {
                     <ul className="list-group">
                         {
                             songs && songs.map(song =>
-                                <li className="list-group-item">
-                                    <img className="poster-spacing" src={song.image} height={100} alt=""/>
-                                    <Link to={`/songs`}>
-                                        {song.title}
-                                    </Link>
+                                <li className="list-group-item ">
+                                    <li className="card album-artwork">
+                                        <img src={song.image}  alt="Album cover"/>
+                                        <div className="card">
+                                            <div className="card-body">
+                                                <Link to={`/songs`} className="card-title"><h5>{song.title}</h5></Link>
+                                            </div>
+                                            <div className="card-footer bg-transparent">
+                                                <SongStats/>
+                                            </div>
+                                        </div>
+
+
+                                    </li>
                                 </li>
                             )
                         }

@@ -45,6 +45,27 @@ body {
     z-index: 1;
 }
 
+/*General*/
+.wd-float-done {
+    clear: both;
+}
+
+.wd-float-left {
+    float: left;
+}
+
+.wd-float-right {
+    float: right;
+}
+
+.wd-float-bottom {
+    float: bottom;
+}
+
+.wd-grey-text {
+    color: rgb(110, 118, 125);
+}
+
 /*Song search page*/
 .poster-spacing {
     padding-right: 15px;
@@ -52,4 +73,32 @@ body {
 
 .results-spacing {
     margin-top: 15px;
+}
+
+.card {
+    border: none;
+}
+.album-artwork {
+    flex-direction: row;
+}
+
+.card-footer {
+    border: none;
+}
+
+.card img {
+    width: 20%;
+}
+
+.card-title {
+    text-decoration: none;
+    color: black;
+}
+
+/*Song stats*/
+.wd-icons-text {
+    text-decoration: none;
+    color: rgb(110, 118, 125);
+    padding-left: 8px;
+    padding-right: 60px;
 }
