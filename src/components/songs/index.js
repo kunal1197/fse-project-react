@@ -1,16 +1,19 @@
 import {useState} from "react";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {searchForSongsThunk} from "../../services/songThunks";
-import SongStats from "./songStats";
+import {searchForSongsThunk} from "../../services/song-thunks";
+import SongStats from "./song-stats";
 
 const Songs = () => {
     const [title, setTitle] = useState('');
     const {songs} = useSelector((state) => state.songs)
     const dispatch = useDispatch();
     const searchForSongs = () => {
+        setShow(showCommentBox)
         dispatch(searchForSongsThunk(title));
     }
+    const showCommentBox = new Array(songs.length).fill(false);
+    const [show, setShow] = useState(showCommentBox);
     return(
         <div>
             <h1>Songs</h1>
@@ -30,23 +33,28 @@ const Songs = () => {
                 <div className="col results-spacing">
                     <ul className="list-group">
                         {
-                            songs && songs.map(song =>
-                                <li className="list-group-item ">
-                                    <li className="card album-artwork">
-                                        <img src={song.image}  alt="Album cover"/>
-                                        <div className="card">
-                                            <div className="card-body">
-                                                <Link to={`/songs`} className="card-title"><h5>{song.title}</h5></Link>
-                                            </div>
-                                            <div className="card-footer bg-transparent">
-                                                <SongStats/>
+                            songs && songs.map(function(song, index) {
+                                return (
+                                    <li key={index} className="list-group-item ">
+                                        <div className="card album-artwork">
+                                            <img src={song.image}  alt="Album cover"/>
+                                            <div className="card">
+                                                <div className="card-body">
+                                                    <Link to={`/songs`} className="card-title"><h5>{song.title}</h5></Link>
+                                                </div>
+                                                <div className="card-footer bg-transparent">
+                                                    <SongStats show={show} setShow={setShow} index={index}/>
+                                                </div>
                                             </div>
                                         </div>
-
-
+                                        {show[index] ? <div className="input-group mt-2">
+                                            <input type="text" className="form-control" aria-label="With textarea" placeholder="Write a comment..."></input>
+                                            <button className="btn btn-outline-secondary" type="button"
+                                                    id="button-addon2">Comment</button>
+                                        </div>: <div></div>}
                                     </li>
-                                </li>
-                            )
+                                )
+                            })
                         }
                         {
                             songs.length === 0 &&
@@ -54,7 +62,6 @@ const Songs = () => {
                         }
                     </ul>
                 </div>
-
             </div>
         </div>
     )
