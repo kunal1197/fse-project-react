@@ -1,6 +1,5 @@
 import React from "react";
 import Navigation from "../navigation";
-import WhatsHappening from "../whats-happening";
 import {Routes, Route, HashRouter} from "react-router-dom";
 import Home from "../home";
 import Bookmarks from "../bookmarks";
@@ -15,9 +14,8 @@ import Songs from "../songs";
 import {configureStore} from "@reduxjs/toolkit";
 import {Provider} from "react-redux";
 import songReducer from "../songs/song-reducer";
-import LikesSideBar from "../likesSidebar";
 import Sidebar from "../sidebar";
-import Comments from "../comments";
+import SongDetails from "../songDetails";
 
 const store = configureStore({
   reducer: {
@@ -47,7 +45,7 @@ const Tuiter = () => {
                   <Route path="/profile" element={<Profile/>}/>
                   <Route path="/songs" element={<Songs/>}/>
                   <Route path="/more" element={<More/>}/>
-                  <Route path="/comments" element={<Comments/>}></Route>
+                  <Route path="/song-details" element={<SongDetails/>}></Route>
                 </Routes>
               </div>
               <div className="ttr-right-column">

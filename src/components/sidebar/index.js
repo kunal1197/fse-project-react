@@ -6,7 +6,7 @@ import PlaylistsSideBar from "../playlistsSidebar";
 const SideBar = () => {
     return (
         <>
-            <div className="container bg-secondary bg-opacity-10 ttr-rounded-15px mt-2 p-2">
+            <div className="container bg-secondary bg-opacity-10 ttr-rounded-5px mt-2 p-2">
                 <h4>Liked Songs</h4>
                 <LikesSideBar/>
                 <br/>
