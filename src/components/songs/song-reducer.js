@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {searchForSongsThunk} from "../../services/songThunks";
+import {searchForSongsThunk} from "../../services/song-thunks";
 
 const initialState = {
     songs: [],
