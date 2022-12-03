@@ -3,9 +3,9 @@ import CreatableSelect from "react-select/creatable";
 
 const PlaylistsSideBar = () => {
     const options = [
-        { value: "jack", label: "Jack", color: "#FF8B00" },
-        { value: "john", label: "John", color: "#36B37E" },
-        { value: "mike", label: "Mike", color: "#0052CC" },
+        { value: "Love", label: "Love", color: "#FF8B00" },
+        { value: "Happy", label: "Happy", color: "#36B37E" },
+        { value: "Sad", label: "Sad", color: "#0052CC" },
     ];
     const colorStyles = {
         control: (styles) => ({ ...styles, backgroundColor: "white" }),
