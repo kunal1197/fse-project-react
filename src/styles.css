@@ -14,8 +14,8 @@ body {
     height: 50%;
 }
 
-.ttr-rounded-15px {
-    border-radius: 15px;
+.ttr-rounded-5px {
+    border-radius: 5px;
 }
 
 .ttr-font-size-150pc {
@@ -107,3 +107,12 @@ body {
     background: none;
     border: none;
 }
+
+/*Song details page*/
+.wd-song-banner {
+    width: 600px;
+    height: 337px;
+    object-fit: fill;
+}
+/*object-fit: cover;*/
+/*object-position: 100% 0 100% 0;*/
