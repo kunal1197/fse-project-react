@@ -47,7 +47,6 @@ const LikesSideBar = () => {
             options={options}
             onChange={handleChange}
             onInputChange={handleInputChange}
-            isMulti
             styles={colorStyles}
             defaultValue="Liked Songs"
         />

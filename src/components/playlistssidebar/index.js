@@ -47,7 +47,6 @@ const PlaylistsSideBar = () => {
             options={options}
             onChange={handleChange}
             onInputChange={handleInputChange}
-            isMulti
             styles={colorStyles}
             defaultValue="Playlisted Songs"
         />
