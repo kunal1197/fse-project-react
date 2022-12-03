@@ -14,9 +14,10 @@ import More from "../more";
 import Songs from "../songs";
 import {configureStore} from "@reduxjs/toolkit";
 import {Provider} from "react-redux";
-import songReducer from "../songs/songReducer";
-import LikesSideBar from "../likessidebar";
+import songReducer from "../songs/song-reducer";
+import LikesSideBar from "../likesSidebar";
 import Sidebar from "../sidebar";
+import Comments from "../comments";
 
 const store = configureStore({
   reducer: {
@@ -46,6 +47,7 @@ const Tuiter = () => {
                   <Route path="/profile" element={<Profile/>}/>
                   <Route path="/songs" element={<Songs/>}/>
                   <Route path="/more" element={<More/>}/>
+                  <Route path="/comments" element={<Comments/>}></Route>
                 </Routes>
               </div>
               <div className="ttr-right-column">

@@ -102,3 +102,8 @@ body {
     padding-left: 8px;
     padding-right: 60px;
 }
+
+.wd-icon-button {
+    background: none;
+    border: none;
+}

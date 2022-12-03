@@ -1,16 +1,17 @@
 import React from "react";
 import CreatableSelect from "react-select/creatable";
-import LikesSideBar from "../likessidebar";
-import Playlistssidebar from "../playlistssidebar";
+import LikesSideBar from "../likesSidebar";
+import PlaylistsSideBar from "../playlistsSidebar";
 
 const SideBar = () => {
     return (
         <>
             <div className="container bg-secondary bg-opacity-10 ttr-rounded-15px mt-2 p-2">
-                <h2>Liked Songs</h2>
+                <h4>Liked Songs</h4>
                 <LikesSideBar/>
-                <h2>Playlisted Songs</h2>
-                <Playlistssidebar/>
+                <br/>
+                <h4>Playlists</h4>
+                <PlaylistsSideBar/>
             </div>
         </>
     );
