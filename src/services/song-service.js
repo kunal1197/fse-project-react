@@ -14,10 +14,8 @@ const searchForSongsCall = async (songName) => {
 export const searchForSongs = async (songName) => {
     const response = await searchForSongsCall(songName);
     if (response.data.statusCode === 401) {
-        // Ideally, we should retry the search query again here since the server
-        // refreshes the Spotify access token on a 401. But that is not working as
-        // expected and the retry request is being sent before the token refreshes.
-        return []
+        const anotherResponse = await searchForSongsCall(songName);
+        return anotherResponse.data;
     }
     return response.data;
 }
