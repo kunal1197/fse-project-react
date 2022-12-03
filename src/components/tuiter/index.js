@@ -51,7 +51,10 @@ const Tuiter = () => {
                 </Routes>
               </div>
               <div className="ttr-right-column">
-                <Sidebar/>
+                <Routes>
+                  <Route path="/songs" element={<Sidebar/>}/>
+                  <Route path="/*" element={<WhatsHappening/>}/>
+                </Routes>
               </div>
             </div>
           </div>

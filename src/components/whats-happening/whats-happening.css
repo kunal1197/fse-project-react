@@ -1,8 +1,9 @@
 
-.ttr-side-bar
-.ttr-side-bar-song
+.ttr-side-bar,
+.ttr-side-bar-song,
 .ttr-user-logo {
     width: 68px;
+    border-radius: 15px;
 }
 
 .ttr-side-bar .ttr-search .fas.fa-search {
