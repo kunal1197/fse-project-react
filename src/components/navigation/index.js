@@ -14,6 +14,8 @@ function Navigation() {
       {label: 'Lists', icon: 'fa-list', path: '/lists'},
       {label: 'Profile', icon: 'fa-user', path: '/profile'},
       {label: 'Songs', icon: 'fa-music', path: '/songs'},
+      {label: 'Login', icon: 'fa-sign-in', path: '/login'},
+      {label: 'Signup', icon: 'fa-user-plus', path: '/signup'},
       {label: 'More', icon: 'fa-circle-ellipsis', path: '/more'},
   ]
   return(

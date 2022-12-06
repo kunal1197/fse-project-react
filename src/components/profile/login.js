@@ -6,6 +6,7 @@ import Signup from "./signup";
 export const Login = () => {
     const [loginUser, setLoginUser] = useState({});
     const navigate = useNavigate()
+    console.log("I'm somwhere in the code")
     const login = () => {
         console.log("Before line 11");
         service.login(loginUser)
@@ -15,8 +16,7 @@ export const Login = () => {
 
     return (
         <div>
-            <h1>SignUp</h1>
-            <Signup/>
+            <h1>Hello</h1>-
             <h1>Login</h1>
             <input onChange={(e) =>
                 setLoginUser({...loginUser,

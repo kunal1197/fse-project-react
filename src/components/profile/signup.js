@@ -8,8 +8,11 @@ const Signup = () => {
     const navigate = useNavigate();
     const signup = () =>
         service.signup(newUser)
-            .then(() => navigate('/songs'))
-            .catch(e => alert(e));
+            .then(() => navigate('/login'))
+            .catch(e => {
+                console.error("When trying to signup", e)
+                throw e;
+            });
     return (
         <div>
             <h1>Signup</h1>

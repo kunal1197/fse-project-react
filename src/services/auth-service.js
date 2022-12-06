@@ -8,11 +8,11 @@ const api = axios.create({
 });
 
 export const signup = (user) => {
-    console.log("Inside signup");
-    api.post(
+    console.log(user)
+    return api.post(
         `${AUTH_API}/signup`, user
     ).then(response => response.data).catch(e => {
-        console.log(e);
+        console.log("Within signup auth-service",e);
         throw e;
     });
 }

@@ -7,7 +7,6 @@ import * as service from "../../services/song-service";
 const Songs = () => {
     const [title, setTitle] = useState('');
     const {songs} = useSelector((state) => state.songs)
-    const {user} = useSelector((state) => state.user)
     const dispatch = useDispatch();
     const searchForSongs = () => {
         dispatch(searchForSongsThunk(title));
