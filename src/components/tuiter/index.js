@@ -16,6 +16,7 @@ import {Provider} from "react-redux";
 import songReducer from "../songs/song-reducer";
 import Sidebar from "../sidebar";
 import SongDetails from "../songDetails";
+import WhatsHappening from "../whats-happening";
 
 const store = configureStore({
   reducer: {

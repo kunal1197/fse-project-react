@@ -1,11 +1,13 @@
-import {useState} from "react";
-import {Link} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {searchForSongsThunk} from "../../services/song-thunks";
+import * as service from "../../services/song-service";
 
 const Songs = () => {
     const [title, setTitle] = useState('');
     const {songs} = useSelector((state) => state.songs)
+    const {user} = useSelector((state) => state.user)
     const dispatch = useDispatch();
     const searchForSongs = () => {
         dispatch(searchForSongsThunk(title));
