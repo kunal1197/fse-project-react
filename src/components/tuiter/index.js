@@ -16,6 +16,9 @@ import {Provider} from "react-redux";
 import songReducer from "../songs/song-reducer";
 import Sidebar from "../sidebar";
 import SongDetails from "../songDetails";
+import WhatsHappening from "../whats-happening";
+import Signup from "../profile/signup";
+import {Login} from "../profile/login";
 
 const store = configureStore({
   reducer: {
@@ -37,6 +40,8 @@ const Tuiter = () => {
                   <Route path="/" element={<Home/>}/>
                   <Route path="/tuiter" element={<Home/>}/>
                   <Route path="/home" element={<Home/>}/>
+                  <Route path="/signup" element={<Signup/>}/>
+                  <Route path="/login" element={<Login/>}/>
                   <Route path="/explore" element={<Explore/>}/>
                   <Route path="/notifications" element={<Notifications/>}/>
                   <Route path="/messages" element={<Messages/>}/>

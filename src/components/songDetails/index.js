@@ -1,13 +1,27 @@
-import React from "react";
-import {Link, useLocation} from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import dateFormat from "dateformat";
 import SongStats from "./song-stats";
-
+import * as service from "../../services/auth-service";
 const SongDetails = () => {
+    const [user, setUser] = useState({});
     const location = useLocation()
+    const navigate = useNavigate()
     const song = location.state.songDetails
     console.log(song)
     const releaseYear = dateFormat(song.releaseYear+"T08:59:00.000Z", "mmmm dS, yyyy")
+    useEffect(async () => {
+        try {
+            const user = await service.profile();
+            setUser(user);
+        } catch (e) {
+            navigate('/login');
+        }
+    }, []);
+    const logout = () => {
+        service.logout()
+            .then(() => navigate('/login'));
+    }
     return(
         <div>
             <div className="p-2">
@@ -37,6 +51,8 @@ const SongDetails = () => {
                     <hr/>
                 </div>
             </div>
+            <button onClick={logout}>
+                Logout</button>
         </div>
     );
 };
