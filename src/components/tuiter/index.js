@@ -19,10 +19,12 @@ import SongDetails from "../songDetails";
 import WhatsHappening from "../whats-happening";
 import Signup from "../profile/signup";
 import {Login} from "../profile/login";
+import commentReducer from "../songDetails/comment-reducer";
 
 const store = configureStore({
   reducer: {
     songs: songReducer,
+    comments: commentReducer,
   }
 })
 

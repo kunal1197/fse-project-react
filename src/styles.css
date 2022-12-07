@@ -116,3 +116,19 @@ body {
 }
 /*object-fit: cover;*/
 /*object-position: 100% 0 100% 0;*/
+
+.wd-posts-spacing {
+    margin-left: 10px;
+}
+
+.wd-float-left {
+    float: left;
+}
+
+.wd-name {
+    margin-left: 12px;
+}
+
+.wd-post-summary-spacing {
+    padding-left: 5px;
+}

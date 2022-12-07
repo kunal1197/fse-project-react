@@ -1,8 +1,7 @@
-import {useEffect, useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {searchForSongsThunk} from "../../services/song-thunks";
-import * as service from "../../services/song-service";
+import {searchForSongsThunk} from "../../services/songs/song-thunks";
+import {useState} from "react";
 
 const Songs = () => {
     const [title, setTitle] = useState('');
@@ -34,7 +33,7 @@ const Songs = () => {
                                 return (
                                     <li key={index} className="list-group-item ">
                                         <div className="card album-artwork">
-                                            <img src={song.image}  alt="Album cover"/>
+                                            <img src={song.images[0]}  alt="Album cover"/>
                                             <div className="card">
                                                 <div className="card-body">
                                                     <Link to="/song-details" state={{songDetails: song}} className="card-title">

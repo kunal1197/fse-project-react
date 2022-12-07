@@ -1,15 +1,41 @@
 import React, {useEffect, useState} from "react";
-import {Link, useLocation, useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {createCommentThunk, findCommentsThunk} from "../../services/comments/comment-thunk";
+import SongComments from "./SongComments";
+import {useLocation, useNavigate} from "react-router-dom";
 import dateFormat from "dateformat";
 import SongStats from "./song-stats";
 import * as service from "../../services/auth-service";
+
 const SongDetails = () => {
     const [user, setUser] = useState({});
     const location = useLocation()
     const navigate = useNavigate()
     const song = location.state.songDetails
-    console.log(song)
-    const releaseYear = dateFormat(song.releaseYear+"T08:59:00.000Z", "mmmm dS, yyyy")
+
+    //Load comments from store
+    const {comments} = useSelector((state) => state.comments)
+    let [newComment, setNewComment] = useState('');
+    const dispatch = useDispatch();
+
+    //Dummy value for userID
+    const dummyUserID = "6387c95a084ce6596562f1ea"
+
+    // Add a new comment
+    const newCommentHandler = () => {
+        const newCommentBody = {
+            songID: song.id,
+            comment: newComment,
+            postedBy: dummyUserID
+        }
+        dispatch(createCommentThunk(newCommentBody))
+        dispatch(findCommentsThunk(song.id))
+    }
+
+    useEffect(() => {
+        dispatch(findCommentsThunk(song.id))
+    }, [])
+
     useEffect(async () => {
         try {
             const user = await service.profile();
@@ -22,34 +48,69 @@ const SongDetails = () => {
         service.logout()
             .then(() => navigate('/login'));
     }
+
+    // Formatting data
+    const artists = song.artists.join(', ')
+    const minutes = Math.floor(song.songDurationInMs / 60000);
+    const seconds = ((song.songDurationInMs % 60000) / 1000).toFixed(0);
+    const duration = minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+    const releaseYear = dateFormat(song.releaseYear+"T08:59:00.000Z", "mmmm dS, yyyy")
+
     return(
         <div>
             <div className="p-2">
                 <div className="mb-2 position-relative">
-                    <img className="w-100 wd-song-banner" src={`${song.image}`} alt={song.title}/>
+                    <img className="w-100 wd-song-banner" src={`${song.images[0]}`} alt={song.title}/>
                 </div>
                 <h2 className="fw-bolder">{song.title}</h2>
                 <div>
-                    <h4 className="pt-0">Artists Name</h4>
-                    <p className="pt-2">
-                        Song details
-                    </p>
+                    <div className="pt-0 pb-4">
+                        <span  className="h4">{artists} </span>
+                    </div>
                     <p>
                         <i className="fa-sharp fa-solid fa-album me-2"></i>
-                        Album name
-                        <i className="far fa-music ms-3 me-2"></i>
-                        Genre
+                        {song.album}
+                        <i className="far fa-stopwatch ms-3 me-2"></i>
+                        {duration}
                         <i className="far fa-calendar ms-3 me-2"></i>
                         {releaseYear}
                         <i className="far fa-link ms-3 me-2"></i>
-                        <a href="/song-details" className="text-decoration-none text-dark">Song link</a>
+                        <a href={`${song.songLink}`} className=" text-dark">Song link</a>
                         <br/>
-
                     </p>
                     <hr/>
-                    <SongStats song={song}/>
+                    <SongStats newComment={newComment} setNewComment={setNewComment} newCommentHandler={newCommentHandler}/>
                     <hr/>
                 </div>
+                {
+                    comments.length > 0  &&
+                    <div>
+                        <div className="wd-grey-text">
+                            Comments
+                        </div>
+                        <ul className="list-group">
+                            {
+                                comments.map((comment, index) =>
+                                    <SongComments
+                                        key={comment._id}
+                                        comment={comment}
+                                        userID={dummyUserID}
+                                        songID={song.id}
+                                    />
+                                )
+                            }
+                        </ul>
+                    </div>
+                }
+                {
+                    comments.length === 0 &&
+                    <div>
+                        <div className="wd-grey-text">
+                            No comments
+                        </div>
+                    </div>
+                }
+
             </div>
             <button onClick={logout}>
                 Logout</button>

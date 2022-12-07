@@ -8,7 +8,7 @@ const Signup = () => {
     const navigate = useNavigate();
     const signup = () =>
         service.signup(newUser)
-            .then(() => navigate('/login'))
+            .then(() => navigate('/songs'))
             .catch(e => {
                 console.error("When trying to signup", e)
                 throw e;
