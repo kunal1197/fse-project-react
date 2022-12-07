@@ -5,5 +5,4 @@ export const searchForSongsThunk = createAsyncThunk(
     'searchForSongs', async (songName) => {
         return await searchForSongs(songName);
     }
-
 )

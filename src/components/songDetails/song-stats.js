@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 
-const SongStats = (song) => {
+const SongStats = ({newComment, setNewComment, newCommentHandler}) => {
     const [showCommentBox, setShowCommentBox] = useState(false);
+
     return(
         <div>
             <div className="row wd-symbols">
@@ -21,8 +22,21 @@ const SongStats = (song) => {
             <div className="row">
                 {showCommentBox ? <
                     div className="input-group mt-2">
-                        <input type="text" className="form-control" aria-label="With textarea" placeholder="Write a comment..."></input>
-                        <button className="btn btn-primary text-white" type="button" id="button-addon2">Comment</button>
+                        <input
+                            type="text"
+                            value={newComment}
+                            onChange={(event) => setNewComment(event.target.value)}
+                            className="form-control"
+                            aria-label="With textarea"
+                            placeholder="Write a comment...">
+                        </input>
+                        <button
+                            className="btn btn-primary text-white"
+                            type="button"
+                            id="button-addon2"
+                            onClick={newCommentHandler}>
+                                Comment
+                        </button>
                     </div> :
                     <div></div>
                 }

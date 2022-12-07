@@ -17,5 +17,6 @@ export const searchForSongs = async (songName) => {
         const anotherResponse = await searchForSongsCall(songName);
         return anotherResponse.data;
     }
+    //console.log(response)
     return response.data;
 }
