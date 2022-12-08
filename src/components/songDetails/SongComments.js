@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {deleteCommentThunk, updateCommentThunk} from "../../services/comments/comment-thunk";
 import {useDispatch} from "react-redux";
 
-const SongComments = ({comment, userID, songID, user}) => {
+const SongComments = ({comment, userID, user}) => {
 
     const [editMode, setEditMode] = useState(false);
     const commentID = String(comment._id)
@@ -37,23 +37,23 @@ const SongComments = ({comment, userID, songID, user}) => {
         <li className="list-group-item">
             <div className="row">
                 <div className="col-10">
-                    <b className="wd-float-left">{user.username}</b>
+                    <b className="wd-float-left">{comment.postedBy.username}</b>
                     <div className="wd-float-left wd-grey-text wd-post-summary-spacing">
                         • {commentDate}
                     </div>
                 </div>
-                <div className="col-1">
-                    <div className="">
-                        <button className="far fa-pen-to-square float-end wd-grey-text wd-icon-button"
-                           onClick={() => setEditMode(!editMode)}></button>
-                    </div>
-                </div>
-                <div className="col-1">
-                    <div className="">
-                        <button className="far fa-trash float-end wd-grey-text wd-icon-button"
-                           onClick={deleteCommentHandler}></button>
-                    </div>
-                </div>
+                {user.username === comment.postedBy.username &&
+                    <>
+                        <div className="col-1">
+                            <button className="far fa-pen-to-square float-end wd-grey-text wd-icon-button"
+                                    onClick={() => setEditMode(!editMode)}></button>
+                        </div>
+                        <div className="col-1">
+                            <button className="far fa-trash float-end wd-grey-text wd-icon-button"
+                                    onClick={deleteCommentHandler}></button>
+                        </div>
+                    </>
+                }
             </div>
             <div className="row mt-2">
                 <div className="col-12">
