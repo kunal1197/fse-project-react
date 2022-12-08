@@ -30,6 +30,8 @@ const SongComments = ({comment, userID, songID}) => {
         dispatch(updateCommentThunk({userID, songID, edit}));
     }
 
+    console.log(comment)
+
     return (
         <li className="list-group-item">
             <div className="row">
@@ -38,14 +40,14 @@ const SongComments = ({comment, userID, songID}) => {
                 </div>
                 <div className="col-1">
                     <div className="">
-                        <i className="far fa-pen-to-square float-end wd-grey-text"
-                           onClick={() => setEditMode(true)}></i>
+                        <button className="far fa-pen-to-square float-end wd-grey-text wd-icon-button"
+                           onClick={() => setEditMode(!editMode)}></button>
                     </div>
                 </div>
                 <div className="col-1">
                     <div className="">
-                        <i className="far fa-trash float-end wd-grey-text"
-                           onClick={deleteCommentHandler}></i>
+                        <button className="far fa-trash float-end wd-grey-text wd-icon-button"
+                           onClick={deleteCommentHandler}></button>
                     </div>
                 </div>
             </div>

@@ -110,10 +110,13 @@ const SongDetails = () => {
                         </div>
                     </div>
                 }
-
+                <button
+                    className="btn btn-primary text-white mt-3"
+                    type="button"
+                    onClick={logout}>
+                    Logout
+                </button>
             </div>
-            <button onClick={logout}>
-                Logout</button>
         </div>
     );
 };
