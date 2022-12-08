@@ -18,18 +18,14 @@ const SongDetails = () => {
     let [newComment, setNewComment] = useState('');
     const dispatch = useDispatch();
 
-    //Dummy value for userID
-    const dummyUserID = "6387c95a084ce6596562f1ea"
-
     // Add a new comment
     const newCommentHandler = () => {
         const newCommentBody = {
             songID: song.id,
             comment: newComment,
-            postedBy: dummyUserID
+            postedBy: "me"
         }
         dispatch(createCommentThunk(newCommentBody))
-        dispatch(findCommentsThunk(song.id))
     }
 
     useEffect(() => {
@@ -79,7 +75,10 @@ const SongDetails = () => {
                         <br/>
                     </p>
                     <hr/>
-                    <SongStats newComment={newComment} setNewComment={setNewComment} newCommentHandler={newCommentHandler}/>
+                    <SongStats newComment={newComment}
+                               setNewComment={setNewComment}
+                               newCommentHandler={newCommentHandler}
+                    />
                     <hr/>
                 </div>
                 {
@@ -94,8 +93,9 @@ const SongDetails = () => {
                                     <SongComments
                                         key={comment._id}
                                         comment={comment}
-                                        userID={dummyUserID}
+                                        userID={"me"}
                                         songID={song.id}
+                                        user={user}
                                     />
                                 )
                             }

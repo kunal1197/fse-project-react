@@ -1,5 +1,10 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {findCommentsThunk} from "../../services/comments/comment-thunk";
+import {
+    createCommentThunk,
+    deleteCommentThunk,
+    findCommentsThunk,
+    updateCommentThunk
+} from "../../services/comments/comment-thunk";
 
 const initialState = {
     comments: [],
@@ -12,7 +17,25 @@ const commentReducer = createSlice({
     extraReducers: {
         [findCommentsThunk.fulfilled]: (state, action) => {
             state.comments = action.payload
-        }
+        },
+        [createCommentThunk.fulfilled]: (state, { payload }) => {
+                state.loading = false
+                state.comments.push(payload)
+        },
+        [updateCommentThunk.fulfilled]: (state, { payload }) => {
+            state.loading = false
+            const commentIndex = state.comments
+                .findIndex((c) => c._id === payload._id)
+            state.comments[commentIndex] = {
+                ...state.comments[commentIndex],
+                ...payload
+            }
+        },
+        [deleteCommentThunk.fulfilled] : (state, { payload }) => {
+            state.loading = false
+            state.comments = state.comments
+                .filter(c => c._id !== payload)
+        },
     }
 })
 
