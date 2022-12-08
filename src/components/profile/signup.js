@@ -16,17 +16,27 @@ const Signup = () => {
     return (
         <div>
             <h1>Signup</h1>
-            <input onChange={(e) =>
-                setNewUser({...newUser,
-                    username: e.target.value})}/>
-            <input onChange={(e) =>
-                setNewUser({...newUser,
-                    password: e.target.value})}/>
-            <input onChange={(e) =>
-                setNewUser({...newUser,
-                    email: e.target.value})}/>
-            <button onClick={signup}>
-                Signup</button>
+            <form>
+                <div className="form-group mb-3">
+                    <label htmlFor="username">Username: </label>
+                    <input type="text" className="form-control" id="username" placeholder="Enter username"
+                           onChange={(e) => setNewUser({...newUser, username: e.target.value})}
+                    />
+                </div>
+                <div className="form-group mb-3">
+                    <label htmlFor="password">Password: </label>
+                    <input type="password" className="form-control" id="password" placeholder="Password"
+                           onChange={(e) => setNewUser({...newUser, password: e.target.value})}
+                    />
+                </div>
+                <div className="form-group mb-3">
+                    <label htmlFor="email">Email: </label>
+                    <input type="email" className="form-control" id="email" placeholder="Email"
+                           onChange={(e) => setNewUser({...newUser, email: e.target.value})}
+                    />
+                </div>
+                <button className="btn btn-primary" onClick={signup}>Submit</button>
+            </form>
         </div>
     );
 }
