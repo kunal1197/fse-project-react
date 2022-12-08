@@ -1,10 +1,11 @@
 import React, {useState} from "react";
-import {deleteCommentThunk, findCommentsThunk, updateCommentThunk} from "../../services/comments/comment-thunk";
+import {deleteCommentThunk, updateCommentThunk} from "../../services/comments/comment-thunk";
 import {useDispatch} from "react-redux";
 
-const SongComments = ({comment, userID, songID}) => {
+const SongComments = ({comment, userID, songID, user}) => {
 
     const [editMode, setEditMode] = useState(false);
+    const commentID = String(comment._id)
 
     const [edit, setEdit] = useState({comment: comment});
 
@@ -12,31 +13,34 @@ const SongComments = ({comment, userID, songID}) => {
 
     const dispatch = useDispatch();
     const deleteCommentHandler = () => {
-        dispatch(deleteCommentThunk({userID, songID}));
+        dispatch(deleteCommentThunk({userID, commentID}));
     }
 
-    const editCommentChangeHandler = (event) => {
+    const editCommentChangeHandler = async (event) => {
         let editValue = event.target.value;
         const newEdit = {
+            comment: {
                 ...edit.comment,
                 comment: editValue
-            };
-            setEdit(newEdit);
+            }
+        };
+        await setEdit(newEdit);
     }
 
     const updateCommentHandler = () => {
-        setEdit(false)
-        dispatch(findCommentsThunk(songID))
-        dispatch(updateCommentThunk({userID, songID, edit}));
+        setEditMode(!editMode)
+        const commentObject = edit.comment
+        dispatch(updateCommentThunk({userID, commentID, commentObject}));
     }
-
-    console.log(comment)
 
     return (
         <li className="list-group-item">
             <div className="row">
                 <div className="col-10">
-                    <b className="wd-float-left">Firstname Lastname</b>
+                    <b className="wd-float-left">{user.username}</b>
+                    <div className="wd-float-left wd-grey-text wd-post-summary-spacing">
+                        • {commentDate}
+                    </div>
                 </div>
                 <div className="col-1">
                     <div className="">
@@ -48,16 +52,6 @@ const SongComments = ({comment, userID, songID}) => {
                     <div className="">
                         <button className="far fa-trash float-end wd-grey-text wd-icon-button"
                            onClick={deleteCommentHandler}></button>
-                    </div>
-                </div>
-            </div>
-            <div className="row">
-                <div className="col-10 ">
-                    <div className="wd-grey-text wd-float-left">
-                        User's username
-                    </div>
-                    <div className="wd-float-left wd-grey-text wd-post-summary-spacing">
-                        • {commentDate}
                     </div>
                 </div>
             </div>

@@ -17,11 +17,11 @@ export const createCommentThunk = createAsyncThunk(
 //Thunk to delete a comment
 export const deleteCommentThunk = createAsyncThunk(
     'deleteComment', async (deleteObject) => {
-        return await deleteComment(deleteObject.userID, deleteObject.songID)
+        return await deleteComment(deleteObject.userID, deleteObject.commentID)
     })
 
 //Thunk to update a comment
 export const updateCommentThunk = createAsyncThunk(
-    'updateComment', async (updateObject) => {
-        return await updateComment(updateObject.userID, updateObject.songID, updateObject.edit)
-    })
+    'updateComment', async (updateObject) =>
+        await updateComment(updateObject.userID, updateObject.commentID, updateObject.commentObject)
+    )

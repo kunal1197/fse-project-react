@@ -8,7 +8,6 @@ const api = axios.create({
 });
 
 export const signup = (user) => {
-    console.log(user)
     return api.post(
         `${AUTH_API}/signup`, user
     ).then(response => response.data).catch(e => {
