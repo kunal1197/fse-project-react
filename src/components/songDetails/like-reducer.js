@@ -1,12 +1,18 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {countHowManyLikesThunk, findUserLikesSongThunk, toggleLikeThunk} from "../../services/likes/like-thunk";
+import {
+    countHowManyLikesThunk,
+    findLikedSongsThunk,
+    findUserLikesSongThunk,
+    toggleLikeThunk
+} from "../../services/likes/like-thunk";
 
 const initialState = {
     likes: {
         count: 0,
-        userLiked: false
+        userLiked: false,
+        likedSongs: []
     },
-    loading: true
+    loading: true,
 }
 
 const likeReducer = createSlice({
@@ -22,6 +28,13 @@ const likeReducer = createSlice({
         [toggleLikeThunk.fulfilled]: (state, action) => {
             state.likes.count = action.payload.count
             state.likes.userLiked = action.payload.userLiked
+        },
+        [findLikedSongsThunk.fulfilled]: (state, action) => {
+            state.likes.likedSongs = action.payload
+        },
+        [findLikedSongsThunk.pending]: (state, action) => {
+            conso
+            state.likes.likedSongs = action.payload
         }
     }
 })

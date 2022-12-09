@@ -5,6 +5,10 @@ import {countHowManyLikes, findAllSongsLikedByUser, findUserLikesSong, toggleLik
 
 export const findLikedSongsThunk = createAsyncThunk(
     'findAllSongsLikedByUser', async (uid) => {
+        console.log("Inside thunk, the uid is :",uid);
+        const [arr] = await findAllSongsLikedByUser(uid);
+        console.log("I'm here")
+        console.log("Inside thunk, the returned value is:", arr)
         return await findAllSongsLikedByUser(uid);
     })
 

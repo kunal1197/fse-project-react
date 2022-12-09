@@ -1,4 +1,5 @@
 import axios from "axios";
+import * as songService from "../songs/song-service";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -8,10 +9,19 @@ const api = axios.create({
     withCredentials: true
 });
 
-export const findAllSongsLikedByUser = (userId) =>
-    api.get(`${SONGS_API}/users/${userId}/likes`)
-        .then(response => response.data)
-        .catch(e => e);
+export const findAllSongsLikedByUser = async (userId) => {
+    console.log("Inside findAllSongsLikedByUser");
+    const response = await api.get(`${SONGS_API}/users/${userId}/likes`)
+       /* .then(response => response.data)
+        .catch(e => {
+            console.log("Error in like-service, findAllSongsLikedByUser", e);
+            throw e;*/
+      /*  });*/
+    console.log("Service-Likes :", response)
+    console.log("Service-likes calling song-service :", songService.searchForTitle(response.data[0].title));
+    return response.data;
+}
+
 
 export const toggleLike = async (uid, sid) => {
     const response = await api.put(`${SONGS_API}/users/${uid}/likes/${sid}`)
