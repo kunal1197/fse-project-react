@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import CreatableSelect from "react-select/creatable";
 import {useDispatch, useSelector} from "react-redux";
-import {findLikedSongsThunk} from "../../services/likes/like-thunk";
 import comments from "../comments";
+import {findAllSongsLikedByUserThunk, findLikedSongsThunk} from "../../services/likes/like-thunk";
 
 const LikesSideBar = ({userID, user}) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -11,7 +11,7 @@ const LikesSideBar = ({userID, user}) => {
     useEffect(() => {
         console.log("Liked Songs :", likedSongs)
         console.log("Going to call findLikedSongsThunk");
-        dispatch(findLikedSongsThunk(userID))
+        dispatch(findAllSongsLikedByUserThunk(userID))
     }, [])
     const colorStyles = {
         control: (styles) => ({ ...styles, backgroundColor: "white" }),

@@ -4,11 +4,11 @@ import {findComments} from "../comments/comment-service";
 import {countHowManyLikes, findAllSongsLikedByUser, findUserLikesSong, toggleLike} from "./like-service";
 
 export const findLikedSongsThunk = createAsyncThunk(
-    'findAllSongsLikedByUser', async (uid) => {
+    'findLikedSongs', async (uid) => {
         console.log("Inside thunk, the uid is :",uid);
-        const [arr] = await findAllSongsLikedByUser(uid);
+        //const [arr] = await findAllSongsLikedByUser(uid);
         console.log("I'm here")
-        console.log("Inside thunk, the returned value is:", arr)
+       // console.log("Inside thunk, the returned value is:", arr)
         return await findAllSongsLikedByUser(uid);
     })
 
@@ -30,6 +30,13 @@ export const toggleLikeThunk = createAsyncThunk(
 export const findUserLikesSongThunk = createAsyncThunk(
     'findUserLikesSong', async(LikeObject) => {
         return await findUserLikesSong(LikeObject.userId, LikeObject.songID)
+    }
+)
+
+export const findAllSongsLikedByUserThunk = createAsyncThunk(
+    'findAllSongsLikedByUser', async (uid) => {
+        console.log("Inside the thunk. The uid passed is :", uid);
+        return await findAllSongsLikedByUser(uid);
     }
 )
 

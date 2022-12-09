@@ -18,7 +18,8 @@ export const findAllSongsLikedByUser = async (userId) => {
             throw e;*/
       /*  });*/
     console.log("Service-Likes :", response)
-    console.log("Service-likes calling song-service :", songService.searchForTitle(response.data[0].title));
+    const res = await songService.searchForTitle(response.data[0].title);
+    console.log("Service-likes calling song-service :", res);
     return response.data;
 }
 
