@@ -1,12 +1,13 @@
 import React from "react";
 import CreatableSelect from "react-select/creatable";
+import {useDispatch} from "react-redux";
+import {findLikedSongsThunk} from "../../services/likes/like-thunk";
 
-const LikesSideBar = () => {
-    const options = [
-        { value: "Love", label: "Love", color: "#FF8B00" },
-        { value: "Love Sosa", label: "Love Sosa", color: "#36B37E" },
-        { value: "Lovers Rock", label: "Lovers Rock", color: "#0052CC" },
-    ];
+const LikesSideBar = ({userID, user}) => {
+    const dispatch = useDispatch();
+    const likeSideBarHandler = () => {
+        dispatch(findLikedSongsThunk)
+    }
     const colorStyles = {
         control: (styles) => ({ ...styles, backgroundColor: "white" }),
         option: (styles, { data, isDisabled, isFocused, isSelected }) => {
