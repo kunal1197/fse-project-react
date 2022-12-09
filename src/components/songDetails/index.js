@@ -6,6 +6,7 @@ import {useLocation, useNavigate} from "react-router-dom";
 import dateFormat from "dateformat";
 import SongStats from "./song-stats";
 import * as service from "../../services/auth-service";
+import {toggleLikeThunk} from "../../services/likes/like-thunk";
 
 const SongDetails = () => {
     const [user, setUser] = useState({});
@@ -78,6 +79,7 @@ const SongDetails = () => {
                     <SongStats newComment={newComment}
                                setNewComment={setNewComment}
                                newCommentHandler={newCommentHandler}
+                               songID={song.id}
                     />
                     <hr/>
                 </div>
@@ -94,7 +96,6 @@ const SongDetails = () => {
                                         key={comment._id}
                                         comment={comment}
                                         userID={"me"}
-                                        songID={song.id}
                                         user={user}
                                     />
                                 )
