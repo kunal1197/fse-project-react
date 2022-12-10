@@ -22,7 +22,11 @@ export const searchForSongs = async (songName) => {
 }
 
 export const searchForTitle = async (sid) => {
-    const response = await axios.get(`${SONGS_API}/search`)
-    const songData = response.data
-    console.log("Song Data => ", songData)
+    const songsIDs = ["6dBUzqjtbnIa1TwYbyw5CM", "2QjOHCTQ1Jl3zawyYOpxh6", "01Lr5YepbgjXAWR9iOEyH1"]
+    const response = await axios.post(`${SONGS_API}/title`, {
+        sid: songsIDs
+    })
+    const songsData = response.data
+    console.log("Song Data => ", songsData)
+    return songsData;
 }

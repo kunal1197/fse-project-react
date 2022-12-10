@@ -29,6 +29,7 @@ export const toggleLikeThunk = createAsyncThunk(
 //Thunk to check if a song is liked by user
 export const findUserLikesSongThunk = createAsyncThunk(
     'findUserLikesSong', async(LikeObject) => {
+        console.log("Inside findUserLikesSong")
         return await findUserLikesSong(LikeObject.userId, LikeObject.songID)
     }
 )
@@ -40,3 +41,24 @@ export const findAllSongsLikedByUserThunk = createAsyncThunk(
     }
 )
 
+// export function findAllSongsLikedByUserAction(uid) {
+//     return async (dispatch) => {
+//         try {
+//             dispatch({
+//                 type: 'findAllSongsLikedByUserThunk.pending',
+//                 payload: {}
+//             })
+//             const r = await findAllSongsLikedByUser(uid);
+//             dispatch({
+//                 type: 'findAllSongsLikedByUserThunk.fulfilled',
+//                 payload: r
+//             })
+//         } catch (e) {
+//             console.log("Error ---- ", e);
+//             dispatch({
+//                 type: 'findAllSongsLikedByUserThunk.rejected',
+//                 payload: e
+//             })
+//         }
+//     }
+// }

@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {
-    countHowManyLikesThunk,
+    countHowManyLikesThunk, findAllSongsLikedByUserThunk,
     findLikedSongsThunk,
     findUserLikesSongThunk,
     toggleLikeThunk
@@ -20,6 +20,8 @@ const likeReducer = createSlice({
     initialState: initialState,
     extraReducers: {
         [countHowManyLikesThunk.fulfilled]: (state, action) => {
+            console.log("countHowManyLikesThunk: ", action, state)
+            console.log("countHowManyLikesThunk: ", state.likes.likedSongs)
             state.likes.count = action.payload
         },
         [findUserLikesSongThunk.fulfilled]: (state, action) => {
@@ -29,13 +31,19 @@ const likeReducer = createSlice({
             state.likes.count = action.payload.count
             state.likes.userLiked = action.payload.userLiked
         },
-        [findLikedSongsThunk.fulfilled]: (state, action) => {
-            state.likes.likedSongs = action.payload
+        [findAllSongsLikedByUserThunk.fulfilled]: (state, action) => {
+            console.log("Inside like fulfilled reducer", action);
+            console.log("State: ", state.likes);
+            console.log("State-likes: ", state.likes.likedSongs);
+            console.log("action.payload.likedSongs: ", action.payload);
+            state.likes.likedSongs = action.payload;
         },
-        [findLikedSongsThunk.pending]: (state, action) => {
-            conso
-            state.likes.likedSongs = action.payload
-        }
+        [findAllSongsLikedByUserThunk.pending]: (state, action) => {
+            console.log("Inside like pending reducer", action);
+        },
+        [findAllSongsLikedByUserThunk.rejected]: (state, action) => {
+            console.log("Inside like rejected reducer", action);
+        },
     }
 })
 
