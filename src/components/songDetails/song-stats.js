@@ -15,8 +15,6 @@ const SongStats = ({newComment, setNewComment, newCommentHandler, songID}) => {
         }, []
     )
 
-    console.log("likesCount", likesCount)
-
     //Like a song
     const likeSong = (songID) => {
         dispatch(toggleLikeThunk({userId, songID}))
