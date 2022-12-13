@@ -10,17 +10,13 @@ const api = axios.create({
 });
 
 export const findAllSongsLikedByUser = async (userId) => {
-    console.log("Inside findAllSongsLikedByUser");
     const response = await api.get(`${SONGS_API}/users/${userId}/likes`)
        /* .then(response => response.data)
         .catch(e => {
             console.log("Error in like-service, findAllSongsLikedByUser", e);
             throw e;*/
       /*  });*/
-    console.log("Service-Likes :", response)
-    const ans = await songService.searchForTitle(response.data);
-    console.log("Answer :+>", ans)
-    return ans;
+    return await songService.searchForTitle(response.data);
 }
 
 
